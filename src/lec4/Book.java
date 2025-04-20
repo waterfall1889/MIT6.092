@@ -1,8 +1,10 @@
+package lec4;
+
 public class Book {
     String title;
     boolean borrowed;
 
-    // Creates a new Book
+    // Creates a new lec3.Book
     public Book(String bookTitle) {
 // Implement this method
         title = bookTitle;
@@ -37,7 +39,7 @@ public class Book {
     }
 
     public static void main(String[] arguments) {
-// Small test of the Book class 
+// Small test of the lec3.Book class
         Book example = new Book("The Da Vinci Code");
         System.out.println("Title (should be The Da Vinci Code): " + example.getTitle());
         System.out.println("Borrowed? (should be false): " + example.isBorrowed());

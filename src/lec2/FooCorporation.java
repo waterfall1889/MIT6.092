@@ -1,3 +1,5 @@
+package lec2;
+
 public class FooCorporation {
     public class Worker{
         int workingHours;

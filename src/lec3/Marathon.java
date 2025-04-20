@@ -1,3 +1,5 @@
+package lec3;
+
 class Marathon {
     public static void main (String[] arguments) {
         String[] names = {

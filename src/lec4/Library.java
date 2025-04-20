@@ -1,3 +1,5 @@
+package lec4;
+
 import java.util.Objects;
 
 public class Library {
@@ -81,10 +83,10 @@ public class Library {
         firstLibrary.addBook(new Book("A Tale of Two Cities"));
         firstLibrary.addBook(new Book("The Lord of the Rings"));
 // Print opening hours and the addresses
-        System.out.println("Library hours:");
+        System.out.println("lec3.Library hours:");
         printOpeningHours();
         System.out.println();
-        System.out.println("Library addresses:");
+        System.out.println("lec3.Library addresses:");
         firstLibrary.printAddress();
         secondLibrary.printAddress();
         System.out.println();

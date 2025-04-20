@@ -3,3 +3,4 @@
 ---
 - Java的入门课程，一共7个lecture，每次课后有作业
 - 主要内容：基本的Java语法，良好的代码风格，bug处理
+- 笔记在lecture-notes目录下，代码均在src目录下。

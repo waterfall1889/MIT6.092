@@ -195,3 +195,71 @@ public class ArrayPrinter {
     }
 }
 ```
+
+## 3.primitive and reference
+- primitive types are basic java types.
+- reference types are arrays and objects
+- 引用类型存储的是对象的内存地址，而不是对象的内容。
+- 栈内存存储的是变量本身（即引用），而堆内存存储的是实际的对象数据。对象在堆内存中创建，而栈内存中存储的是引用（内存地址）。
+- 赋值操作会传递引用（对象的内存地址），而不是对象本身。
+- == compares the references, 而不是对象的数值。
+```java
+Baby shiloh1 = new Baby('shiloh'); 
+Baby shiloh2 = new Baby('shiloh');
+// shiloh1 == shiloh2 is false.这是由于二者的内存位置不同造成的。引用类型比较的是内存位置
+```
+
+## 4.static types and methods
+- 在 Java 中，static 关键字用于定义静态变量和静态方法，它们与类本身而非类的实例（对象）相关联。也就是说，静态变量和方法属于类级别，而不是对象级别。
+
+###  静态变量（Static Variable）
+静态变量是属于类的，而不是类的实例。所有类的实例共享同一个静态变量。静态变量被存储在 类的共享内存区，因此，修改某个对象的静态变量，其他对象也能看到这个修改。
+```java
+public class Counter {
+    // 静态变量
+    static int count = 0;
+
+    public Counter() {
+        count++;  // 每次创建新对象，count 自增
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Initial count: " + count);  // 输出 0
+
+        // 创建对象，count 会增加
+        Counter c1 = new Counter();
+        Counter c2 = new Counter();
+        
+        System.out.println("Count after creating 2 objects: " + count);  // 输出 2
+    }
+}
+```
+
+### 静态方法（Static Method）
+- 静态方法是属于类的，而不是实例。静态方法可以通过类名直接调用，而不需要创建类的实例。
+- 静态方法不能访问非静态（实例）变量或实例方法。它们只能访问静态成员。
+- 不能在静态方法中直接使用 this 关键字（因为 this 是指向实例的）。
+- 实例方法（非静态方法）是能够访问静态变量和静态方法的。
+```java
+public class Baby { 
+    static void cry(Baby thebaby) { 
+        System.out.println(thebaby.name + "cries"); 
+    } 
+    //虽然 cry 是静态的，但它并不依赖于实例本身，而是依赖于你传递给它的 Baby 对象。
+    //静态方法是属于类的，而非对象的，所以它不能直接访问类的实例成员（如 name）。
+    //但通过传入一个 Baby 对象（即 thebaby），静态方法能够操作这个对象的实例成员
+}
+//等价于
+public class Baby {
+    void cry() {
+        System.out.println(name + "cries");
+    }
+}
+```
+### main 函数
+- main 方法被设计成静态的（static），是因为 Java 程序的执行入口需要能够在不依赖于类的实例的情况下直接调用。
+- Java 程序的执行是从 main 方法开始的。无论程序多么复杂，Java 虚拟机（JVM）总是通过调用 main 方法来启动应用程序。
+- JVM 在启动时并不创建该类的实例，而是直接调用 main 方法。这个方法必须是 static，以便 JVM 在加载类时能够直接调用它，而无需实例化该类。
+- static 修饰符表示该方法属于类本身，而不是某个实例。当程序启动时，JVM 会加载并运行指定的类，但不会创建类的实例。main 方法是类的一个静态方法，所以它可以在没有类实例的情况下直接被调用。
+- 如果 main 不是静态的，JVM 就无法直接调用它，因为没有对象来调用该方法。
+- 如果 main 方法是实例方法（非静态），你就需要先创建该类的一个实例，然后通过该实例调用 main 方法，这样会引入不必要的复杂性。
